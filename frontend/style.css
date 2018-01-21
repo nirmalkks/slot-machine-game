@@ -1,0 +1,164 @@
+body {
+  font-family: sans-serif;
+}
+
+.content-wrapper {
+  text-align: center;
+}
+
+.main-container {
+  margin: 0 auto;
+}
+
+.slot {
+  float: left;
+  background-repeat: no-repeat !important;
+}
+
+.slot:nth-child(even) {
+  margin: 0 10px;
+}
+
+#result {
+  margin: 20px 0;
+  font-size: 1.9em;
+  font-weight: bold;
+  height: 30px;
+  color: red;
+}
+
+.btn {
+  display: block;
+  margin: 30px auto;
+  cursor: pointer;
+  background: url("/images/button.png") no-repeat;
+  background-size: contain;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .main-container {
+    width: 338px;
+  }
+  #result {
+    font-size: 1.5em;
+  }
+  .slot {
+    width: 106px;
+    height: 70px;
+  }
+  @keyframes fruit-reel {
+    100% {
+      background-position: 0 -460px;
+    }
+  }
+  .bg-Symbol_0 {
+    background: url('/images/fruit_reel_small.png') -10px -10px;
+  }
+  .bg-Symbol_1 {
+    background: url('/images/fruit_reel_small.png') -10px -100px;
+  }
+  .bg-Symbol_2 {
+    background: url('/images/fruit_reel_small.png') -10px -190px;
+  }
+  .bg-Symbol_3 {
+    background: url('/images/fruit_reel_small.png') -10px -280px;
+  }
+  .bg-Symbol_4 {
+    background: url('/images/fruit_reel_small.png') -10px -370px;
+  }
+  .bg-Symbol_5 {
+    background: url('/images/fruit_reel_small.png') -10px -460px;
+  }
+  .btn {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+  .main-container {
+    width: 515px;
+  }
+  #result {
+    font-size: 1.7em;
+  }
+  .slot {
+    width: 165px;
+    height: 109px;
+  }
+  @keyframes fruit-reel {
+    100% {
+      background-position: 0 -655px;
+    }
+  }
+  .bg-Symbol_0 {
+    background: url('/images/fruit_reel_medium.png') -10px -10px;
+  }
+  .bg-Symbol_1 {
+    background: url('/images/fruit_reel_medium.png') -10px -139px;
+  }
+  .bg-Symbol_2 {
+    background: url('/images/fruit_reel_medium.png') -10px -268px;
+  }
+  .bg-Symbol_3 {
+    background: url('/images/fruit_reel_medium.png') -10px -397px;
+  }
+  .bg-Symbol_4 {
+    background: url('/images/fruit_reel_medium.png') -10px -526px;
+  }
+  .bg-Symbol_5 {
+    background: url('/images/fruit_reel_medium.png') -10px -655px;
+  }
+  .btn {
+    width: 62px;
+    height: 62px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .main-container {
+    width: 725px;
+  }
+  #result {
+    font-size: 1.9em;
+  }
+  .slot {
+    width: 235px;
+    height: 155px;
+  }
+  @keyframes fruit-reel {
+    100% {
+      background-position: 0 -885px;
+    }
+  }
+  .bg-Symbol_0 {
+    background: url('/images/fruit_reel.png') -10px -10px;
+  }
+  .bg-Symbol_1 {
+    background: url('/images/fruit_reel.png') -10px -185px;
+  }
+  .bg-Symbol_2 {
+    background: url('/images/fruit_reel.png') -10px -360px;
+  }
+  .bg-Symbol_3 {
+    background: url('/images/fruit_reel.png') -10px -535px;
+  }
+  .bg-Symbol_4 {
+    background: url('/images/fruit_reel.png') -10px -710px;
+  }
+  .bg-Symbol_5 {
+    background: url('/images/fruit_reel.png') -10px -885px;
+  }
+  .btn {
+    width: 98px;
+    height: 98px;
+  }
+}
+
+.btn:active {
+  transform: translateY(4px);
+}
+
+.clear {
+  clear: both;
+}
