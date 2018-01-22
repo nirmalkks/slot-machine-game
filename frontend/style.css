@@ -46,6 +46,26 @@ body {
     width: 106px;
     height: 70px;
   }
+  @-webkit-keyframes fruit-reel {
+    100% {
+      background-position: 0 -460px;
+    }
+  }
+  @-moz-keyframes fruit-reel {
+    100% {
+      background-position: 0 -460px;
+    }
+  }
+  @-o-keyframes fruit-reel {
+    100% {
+      background-position: 0 -460px;
+    }
+  }
+  @-ms-keyframes fruit-reel {
+    100% {
+      background-position: 0 -460px;
+    }
+  }
   @keyframes fruit-reel {
     100% {
       background-position: 0 -460px;
@@ -86,6 +106,26 @@ body {
     width: 165px;
     height: 109px;
   }
+  @-webkit-keyframes fruit-reel {
+    100% {
+      background-position: 0 -655px;
+    }
+  }
+  @-moz-keyframes fruit-reel {
+    100% {
+      background-position: 0 -655px;
+    }
+  }
+  @-o-keyframes fruit-reel {
+    100% {
+      background-position: 0 -655px;
+    }
+  }
+  @-ms-keyframes fruit-reel {
+    100% {
+      background-position: 0 -655px;
+    }
+  }
   @keyframes fruit-reel {
     100% {
       background-position: 0 -655px;
@@ -125,6 +165,26 @@ body {
   .slot {
     width: 235px;
     height: 155px;
+  }
+  @-webkit-keyframes fruit-reel {
+    100% {
+      background-position: 0 -885px;
+    }
+  }
+  @-moz-keyframes fruit-reel {
+    100% {
+      background-position: 0 -885px;
+    }
+  }
+  @-o-keyframes fruit-reel {
+    100% {
+      background-position: 0 -885px;
+    }
+  }
+  @-ms-keyframes fruit-reel {
+    100% {
+      background-position: 0 -885px;
+    }
   }
   @keyframes fruit-reel {
     100% {

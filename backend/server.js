@@ -9,7 +9,6 @@ const port = 3000;
 const app = express();
 
 app.use(express.static('frontend'));
-app.use(express.static('out'));
 app.get('/api', handlers.apihandler);
 app.get('/', handlers.home);
 

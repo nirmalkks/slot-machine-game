@@ -144,7 +144,7 @@ FruitSlotGame.App = (function () {
    */
 
   function getLargestIdenticalElementCount(array) {
-    var elementCountObj = array.reduce((elCountObj, element) => {
+    var elementCountObj = array.reduce(function (elCountObj, element) {
       elCountObj[element] = ++elCountObj[element] || 1;
       return elCountObj;
     }, {});

@@ -31,6 +31,7 @@ module.exports = function(config) {
 
     // list of files / patterns to exclude
     exclude: [
+      'frontend/src/initApp.js',
     ],
 
 
