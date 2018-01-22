@@ -2,26 +2,25 @@
 
 describe('Fruit Slot Machine Game Tests - ', function () {
 
-  // API for interacting with the page.
-  var controls = {
-    get slots() {
-      return document.getElementsByClassName('slot');
-    },
-    get result() {
-      return document.getElementById('result');
-    },
-    get startButton() {
-      return document.getElementById('startButton');
-    },
-    clickStart: function () {
-      document.getElementById('startButton').click();
-    }
-  };
+
   var appModule = window.FruitSlotGame.App;
   var domAccessModule = window.FruitSlotGame.DomAccess;
   var dataAccessModule = window.FruitSlotGame.DataAccess;
   var apiUtilModule = window.FruitSlotGame.Utils.ApiUtility;
   var constants = window.FruitSlotGame.AppConstants;
+
+  // API for interacting with the page.
+  var controls = {
+    get slots() {
+      return domAccessModule.getSlotDivs();
+    },
+    get result() {
+      return domAccessModule.getResultDiv();
+    },
+    get startButton() {
+      return domAccessModule.getStartBtnDiv();
+    }
+  };
 
   // initialize FruitSlotGame.App and insert html content in to DOM
   beforeEach(function () {

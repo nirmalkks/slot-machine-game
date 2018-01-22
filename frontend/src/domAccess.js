@@ -69,6 +69,29 @@ FruitSlotGame.DomAccess = (function () {
   }
 
   /*
+   * setElementCssProperty method
+   * sets the given css property for an HTML DOM element
+   * @param {element} DOM element
+   * @param {property} String - CSSproperty for which value should be set
+   * @param {value} String value to be set
+   */
+
+  function setElementCssProperty(element, property, value) {
+    element.style[property] = value;
+  }
+
+  /*
+   * setElementInnerHTML method
+   * sets the inner HTML content for an HTML DOM element
+   * @param {element} DOM element
+   * @param {text} String to be set as inner HTML
+   */
+
+  function setElementInnerHTML(element, text) {
+    element.innerHTML = text;
+  }
+
+  /*
    * replaceClass method
    * updates slot image by replacing current image css class with the one
    * corresponding to the number returned from api
@@ -90,6 +113,8 @@ FruitSlotGame.DomAccess = (function () {
     getStartBtnDiv: getStartBtnDiv,
     getSlotDivs: getSlotDivs,
     getResultDiv: getResultDiv,
+    setElementCssProperty: setElementCssProperty,
+    setElementInnerHTML: setElementInnerHTML,
     replaceClass: replaceClass
   };
 }());

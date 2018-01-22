@@ -13,4 +13,6 @@ app.use(express.static('out'));
 app.get('/api', handlers.apihandler);
 app.get('/', handlers.home);
 
-app.listen(port, () => console.log('Server listening on port 3000!')); // eslint-disable-line no-console
+const server = app.listen(port, () => console.log('Server listening on port 3000!')); // eslint-disable-line no-console
+
+module.exports = server;

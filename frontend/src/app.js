@@ -65,7 +65,7 @@ FruitSlotGame.App = (function () {
 
   function resetGame(resultDiv, slotDivs, isBonusRound) {
     if (!isBonusRound) {
-      resultDiv.innerHTML = '';
+      domAccess.setElementInnerHTML(resultDiv, '');
     }
     for (var i = 0; i < slotDivs.length; i++) {
       domAccess.replaceClass(slotDivs[i], i, constants.imageClsPrefix);
@@ -80,7 +80,7 @@ FruitSlotGame.App = (function () {
 
   function startAnimation(slotDivs) {
     for (var i = 0; i < slotDivs.length; i++) {
-      slotDivs[i].style.animation = constants.defaultAnimationCss;
+      domAccess.setElementCssProperty(slotDivs[i], 'animation', constants.defaultAnimationCss);
     }
   }
 
@@ -99,7 +99,7 @@ FruitSlotGame.App = (function () {
       (function (index) {
         setTimeout(function () {
           domAccess.replaceClass(slotDivs[index], data.win[index], constants.imageClsPrefix);
-          slotDivs[index].style.animation = 'none';
+          domAccess.setElementCssProperty(slotDivs[index], 'animation', 'none');
           if (index === slotDivs.length - 1) {
             displayWin(data, resultDiv);
           }
@@ -128,7 +128,7 @@ FruitSlotGame.App = (function () {
     } else {
       result = constants.noWinText;
     }
-    resultDiv.innerHTML = result;
+    domAccess.setElementInnerHTML(resultDiv, result);
     isBonusRound = data.activateBonus;
     if (isBonusRound) {
       triggerBonusRound(resultDiv);
@@ -168,7 +168,7 @@ FruitSlotGame.App = (function () {
 
   function triggerBonusRound(resultDiv) {
     setTimeout(function () {
-      resultDiv.innerHTML = constants.bonusRoundText;
+      domAccess.setElementInnerHTML(resultDiv, constants.bonusRoundText);
       onStartButtonClick();
     }, 2000);
   }
@@ -182,9 +182,9 @@ FruitSlotGame.App = (function () {
    */
 
   function displayError(slotDivs, resultDiv) {
-    resultDiv.innerHTML = constants.serverErrorMsg;
+    domAccess.setElementInnerHTML(resultDiv, constants.serverErrorMsg);
     for (var i = 0; i < slotDivs.length; i++) {
-      slotDivs[i].style.animation = 'none';
+      domAccess.setElementCssProperty(slotDivs[i], 'animation', 'none');
     }
   }
 
