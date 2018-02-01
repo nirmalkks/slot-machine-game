@@ -6,8 +6,8 @@ body {
   text-align: center;
 }
 
-.main-container {
-  margin: 0 auto;
+.slot-wrapper {
+  display: inline-block;
 }
 
 .slot {
@@ -35,10 +35,7 @@ body {
   background-size: contain;
 }
 
-@media only screen and (min-width: 320px) and (max-width: 480px) {
-  .main-container {
-    width: 338px;
-  }
+@media only screen and (min-width: 320px) and (max-width: 530px) {
   #result {
     font-size: 1.5em;
   }
@@ -95,10 +92,7 @@ body {
   }
 }
 
-@media only screen and (min-width: 481px) and (max-width: 767px) {
-  .main-container {
-    width: 515px;
-  }
+@media only screen and (min-width: 531px) and (max-width: 767px) {
   #result {
     font-size: 1.7em;
   }
@@ -156,9 +150,6 @@ body {
 }
 
 @media only screen and (min-width: 768px) {
-  .main-container {
-    width: 725px;
-  }
   #result {
     font-size: 1.9em;
   }

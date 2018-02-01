@@ -149,13 +149,14 @@ FruitSlotGame.App = (function () {
       return elCountObj;
     }, {});
     var keysArray = Object.keys(elementCountObj);
+    var firstElCount = elementCountObj[keysArray[0]];
 
     if (keysArray.length === 1) {
-      return elementCountObj[keysArray[0]];
+      return firstElCount;
     } else {
-      return Object.keys(elementCountObj).reduce(function (a, b) {
-        return elementCountObj[a] > elementCountObj[b] ? elementCountObj[a] : elementCountObj[b];
-      });
+      return Object.keys(elementCountObj).reduce(function (largestCountSoFar, currentEl) {
+        return largestCountSoFar > elementCountObj[currentEl] ? largestCountSoFar : elementCountObj[currentEl];
+      }, firstElCount);
     }
   }
 
