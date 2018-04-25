@@ -5,12 +5,8 @@
  * contains methods to initialize the DOM and querying DOM elements for manipulation
  */
 
-var FruitSlotGame = FruitSlotGame || {};
-FruitSlotGame.DomAccess = FruitSlotGame.DomAccess || {};
-FruitSlotGame.DomAccess = (function () {
-  var slotDivs;
-  var resultDiv;
-  var startBtnDiv;
+
+export default class DomAccess {
 
   /*
    * init method
@@ -18,13 +14,12 @@ FruitSlotGame.DomAccess = (function () {
    * DOM elements representing the slots, result text container and start button
    * @param {slotCount} Number of slots to be displayed
    */
-
-  function init(slotCount) {
-    var slotsDom = '';
+  constructor(slotCount) {
+    let slotsDom = '';
     for (var i = 0; i < slotCount; i++) {
       slotsDom += '<div id="slot' + (i + 1) + '" class="slot bg-Symbol_' + i + '"></div>';
     }
-    var gameDom = '<div class="content-wrapper">' +
+    const gameDom = '<div class="content-wrapper">' +
       '<div class="main-container">' +
       '<div id="result"></div>' +
       '<div class=slot-wrapper>' +
@@ -36,9 +31,9 @@ FruitSlotGame.DomAccess = (function () {
       '</div>';
 
     document.body.insertAdjacentHTML('afterbegin', gameDom);
-    slotDivs = document.getElementsByClassName('slot');
-    resultDiv = document.getElementById('result');
-    startBtnDiv = document.getElementById('startButton');
+    this.slotDivs = document.getElementsByClassName('slot');
+    this.resultDiv = document.getElementById('result');
+    this.startBtnDiv = document.getElementById('startButton');
   }
 
   /*
@@ -46,8 +41,8 @@ FruitSlotGame.DomAccess = (function () {
    * returns the DOM element collection representing the slots
    */
 
-  function getSlotDivs() {
-    return slotDivs;
+  getSlotDivs() {
+    return this.slotDivs;
   }
 
   /*
@@ -55,8 +50,8 @@ FruitSlotGame.DomAccess = (function () {
    * returns the DOM element representing the start button
    */
 
-  function getStartBtnDiv() {
-    return startBtnDiv;
+  getStartBtnDiv() {
+    return this.startBtnDiv;
   }
 
   /*
@@ -64,8 +59,8 @@ FruitSlotGame.DomAccess = (function () {
    * returns the DOM element used for displaying the "win"
    */
 
-  function getResultDiv() {
-    return resultDiv;
+  getResultDiv() {
+    return this.resultDiv;
   }
 
   /*
@@ -76,7 +71,7 @@ FruitSlotGame.DomAccess = (function () {
    * @param {value} String value to be set
    */
 
-  function setElementCssProperty(element, property, value) {
+  setElementCssProperty(element, property, value) {
     element.style[property] = value;
   }
 
@@ -87,7 +82,7 @@ FruitSlotGame.DomAccess = (function () {
    * @param {text} String to be set as inner HTML
    */
 
-  function setElementInnerHTML(element, text) {
+  setElementInnerHTML(element, text) {
     element.innerHTML = text;
   }
 
@@ -100,7 +95,7 @@ FruitSlotGame.DomAccess = (function () {
    * @param {imageClsPrefix} String used as the prefix for slot image css class
    */
 
-  function replaceClass(element, number, imageClsPrefix) {
+  replaceClass(element, number, imageClsPrefix) {
     var regex = new RegExp(imageClsPrefix + '\\d+', 'g');
     var match = element.className.match(regex);
     if (match) {
@@ -108,13 +103,4 @@ FruitSlotGame.DomAccess = (function () {
     }
   }
 
-  return {
-    init: init,
-    getStartBtnDiv: getStartBtnDiv,
-    getSlotDivs: getSlotDivs,
-    getResultDiv: getResultDiv,
-    setElementCssProperty: setElementCssProperty,
-    setElementInnerHTML: setElementInnerHTML,
-    replaceClass: replaceClass
-  };
-}());
+}

@@ -1,17 +1,16 @@
 'use strict';
 
+import DomAccess from './domAccess';
+import DataAccess from './dataAccess';
+import ApiUtility from './utils/apiUtility';
+import AppConstants from './utils/appConstants';
+
 /*
  * App module for Fruit Slot Machine game
  * contains methods to start, stop and reset game
  */
 
-var FruitSlotGame = FruitSlotGame || {};
-FruitSlotGame.App = FruitSlotGame.App || {};
-FruitSlotGame.App = (function () {
-  var domAccess;
-  var data;
-  var constants;
-  var isBonusRound = false;
+export default class GameApp {
 
   /*
    * init method
@@ -22,14 +21,12 @@ FruitSlotGame.App = (function () {
    * @param {apiUtilsModule} ApiUtilityModule object
    * @param {appConstantsModule} AppConstantsModule object
    */
-
-  function init(domAccessModule, dataAccessModule, apiUtilsModule, appConstantsModule) {
-    domAccess = domAccessModule;
-    data = dataAccessModule;
-    constants = appConstantsModule;
-    domAccess.init(constants.slotCount);
-    data.init(apiUtilsModule, constants.apiURL, constants.slotCount);
-    domAccess.getStartBtnDiv().addEventListener('click', onStartButtonClick);
+  constructor() {
+    this.constants = AppConstants;
+    this.domAccess = new DomAccess(this.constants.slotCount);
+    this.data = new DataAccess(ApiUtility, this.constants.apiURL, this.constants.slotCount);
+    this.isBonusRound = false;
+    this.domAccess.getStartBtnDiv().addEventListener('click', this.onStartButtonClick.bind(this));
   }
 
   /*
@@ -39,19 +36,19 @@ FruitSlotGame.App = (function () {
    * and calls the api to get the "win" number sequence
    */
 
-  function onStartButtonClick() {
-    var slotDivs = domAccess.getSlotDivs();
-    var resultDiv = domAccess.getResultDiv();
+  onStartButtonClick() {
+    var slotDivs = this.domAccess.getSlotDivs();
+    var resultDiv = this.domAccess.getResultDiv();
     var callbackFn = function (data) {
       if (data) {
-        stopAnimationAndDisplayWin(data, slotDivs, resultDiv);
+        this.stopAnimationAndDisplayWin(data, slotDivs, resultDiv);
       } else {
-        displayError(slotDivs, resultDiv);
+        this.displayError(slotDivs, resultDiv);
       }
     };
-    resetGame(resultDiv, slotDivs, isBonusRound);
-    startAnimation(slotDivs);
-    data.getWinData(callbackFn);
+    this.resetGame(resultDiv, slotDivs, this.isBonusRound);
+    this.startAnimation(slotDivs);
+    this.data.getWinData(callbackFn.bind(this));
   }
 
   /*
@@ -63,12 +60,12 @@ FruitSlotGame.App = (function () {
    * @param {isBonusRound} Boolean flag to indicate if bonus round is triggered
    */
 
-  function resetGame(resultDiv, slotDivs, isBonusRound) {
+  resetGame(resultDiv, slotDivs, isBonusRound) {
     if (!isBonusRound) {
-      domAccess.setElementInnerHTML(resultDiv, '');
+      this.domAccess.setElementInnerHTML(resultDiv, '');
     }
     for (var i = 0; i < slotDivs.length; i++) {
-      domAccess.replaceClass(slotDivs[i], i, constants.imageClsPrefix);
+      this.domAccess.replaceClass(slotDivs[i], i, this.constants.imageClsPrefix);
     }
   }
 
@@ -78,9 +75,9 @@ FruitSlotGame.App = (function () {
    * @param {slotDivs} HTML DOM element collection representing the slots
    */
 
-  function startAnimation(slotDivs) {
+  startAnimation(slotDivs) {
     for (var i = 0; i < slotDivs.length; i++) {
-      domAccess.setElementCssProperty(slotDivs[i], 'animation', constants.defaultAnimationCss);
+      this.domAccess.setElementCssProperty(slotDivs[i], 'animation', this.constants.defaultAnimationCss);
     }
   }
 
@@ -93,15 +90,16 @@ FruitSlotGame.App = (function () {
    * @param {resultDiv} HTML DOM element that displays the result
    */
 
-  function stopAnimationAndDisplayWin(data, slotDivs, resultDiv) {
-    var timeout = 5000;
+  stopAnimationAndDisplayWin(data, slotDivs, resultDiv) {
+    const timeout = 5000;
+    const that = this;
     for (var i = 0; i < slotDivs.length; i++) {
       (function (index) {
         setTimeout(function () {
-          domAccess.replaceClass(slotDivs[index], data.win[index], constants.imageClsPrefix);
-          domAccess.setElementCssProperty(slotDivs[index], 'animation', 'none');
+          that.domAccess.replaceClass(slotDivs[index], data.win[index], that.constants.imageClsPrefix);
+          that.domAccess.setElementCssProperty(slotDivs[index], 'animation', 'none');
           if (index === slotDivs.length - 1) {
-            displayWin(data, resultDiv);
+            that.displayWin(data, resultDiv);
           }
         }, (timeout + i * 500));
       }(i));
@@ -116,22 +114,22 @@ FruitSlotGame.App = (function () {
    * @param {resultDiv} HTML DOM element that displays the result
    */
 
-  function displayWin(data, resultDiv) {
+  displayWin(data, resultDiv) {
     var result;
     var win = data.win;
-    var largestIdenticalElementCount = getLargestIdenticalElementCount(data.win);
+    var largestIdenticalElementCount = this.getLargestIdenticalElementCount(data.win);
 
     if (largestIdenticalElementCount === win.length) {
-      result = constants.bigWinText;
+      result = this.constants.bigWinText;
     } else if (largestIdenticalElementCount >= 2) {
-      result = constants.smallWinText;
+      result = this.constants.smallWinText;
     } else {
-      result = constants.noWinText;
+      result = this.constants.noWinText;
     }
-    domAccess.setElementInnerHTML(resultDiv, result);
-    isBonusRound = data.activateBonus;
-    if (isBonusRound) {
-      triggerBonusRound(resultDiv);
+    this.domAccess.setElementInnerHTML(resultDiv, result);
+    this.isBonusRound = data.activateBonus;
+    if (this.isBonusRound) {
+      this.triggerBonusRound(resultDiv);
     }
   }
 
@@ -143,7 +141,7 @@ FruitSlotGame.App = (function () {
    * @param {array} Array containing the "win" number sequence
    */
 
-  function getLargestIdenticalElementCount(array) {
+  getLargestIdenticalElementCount(array) {
     var elementCountObj = array.reduce(function (elCountObj, element) {
       elCountObj[element] = ++elCountObj[element] || 1;
       return elCountObj;
@@ -167,10 +165,11 @@ FruitSlotGame.App = (function () {
    * @param {resultDiv} HTML DOM element that displays the result
    */
 
-  function triggerBonusRound(resultDiv) {
+  triggerBonusRound(resultDiv) {
+    const that = this;
     setTimeout(function () {
-      domAccess.setElementInnerHTML(resultDiv, constants.bonusRoundText);
-      onStartButtonClick();
+      that.domAccess.setElementInnerHTML(resultDiv, that.constants.bonusRoundText);
+      that.onStartButtonClick();
     }, 2000);
   }
 
@@ -182,20 +181,11 @@ FruitSlotGame.App = (function () {
    * @param {resultDiv} HTML DOM element that displays the result
    */
 
-  function displayError(slotDivs, resultDiv) {
-    domAccess.setElementInnerHTML(resultDiv, constants.serverErrorMsg);
+  displayError(slotDivs, resultDiv) {
+    this.domAccess.setElementInnerHTML(resultDiv, this.constants.serverErrorMsg);
     for (var i = 0; i < slotDivs.length; i++) {
-      domAccess.setElementCssProperty(slotDivs[i], 'animation', 'none');
+      this.domAccess.setElementCssProperty(slotDivs[i], 'animation', 'none');
     }
   }
 
-  return {
-    init: init,
-    resetGame: resetGame,
-    startAnimation: startAnimation,
-    stopAnimationAndDisplayWin: stopAnimationAndDisplayWin,
-    displayWin: displayWin,
-    getLargestIdenticalElementCount: getLargestIdenticalElementCount,
-    displayError: displayError
-  };
-}());
+}

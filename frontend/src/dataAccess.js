@@ -5,12 +5,7 @@
  * contains methods to initialize the module and fetching "win" sequence from server
  */
 
-var FruitSlotGame = FruitSlotGame || {};
-FruitSlotGame.DataAccess = FruitSlotGame.DataAccess || {};
-FruitSlotGame.DataAccess = function () {
-  var apiUtility;
-  var apiURL;
-  var randomNoCount;
+export default class DataAccess {
 
   /*
    * init method
@@ -19,11 +14,10 @@ FruitSlotGame.DataAccess = function () {
    * @param {url} String representing api url
    * @param {count} Number indicating the count of slots/random numbers that should be returned from api
    */
-
-  function init(util, url, count) {
-    apiUtility = util;
-    apiURL = url;
-    randomNoCount = count;
+  constructor(util, url, count) {
+    this.apiUtility = util;
+    this.apiURL = url;
+    this.randomNoCount = count;
   }
 
   /*
@@ -32,14 +26,10 @@ FruitSlotGame.DataAccess = function () {
    * @param {callback} function to be executed once api returns the data
    */
 
-  function getWinData(callback) {
-    apiUtility.httpGet(apiURL + '?count=' + randomNoCount, function (response) {
+  getWinData(callback) {
+    this.apiUtility.httpGet(this.apiURL + '?count=' + this.randomNoCount, function (response) {
       callback(JSON.parse(response));
     });
   }
 
-  return {
-    init: init,
-    getWinData: getWinData
-  };
-}();
+}

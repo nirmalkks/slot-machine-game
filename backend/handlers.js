@@ -34,7 +34,7 @@ function apihandler(req, res) {
  * @param {res} response object
  */
 function home(req, res) {
-  res.sendFile(path.join(__dirname, './frontend', 'index.html'));
+  res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
 }
 
 module.exports = {

@@ -1,7 +1,7 @@
 // Karma configuration
 // Generated on Fri Jan 19 2018 15:05:33 GMT+0530 (India Standard Time)
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -15,10 +15,11 @@ module.exports = function(config) {
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
-      require('karma-jasmine-html-reporter')
+      require('karma-jasmine-html-reporter'),
+      require('karma-webpack'),
     ],
 
-    client:{
+    client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
 
@@ -31,15 +32,27 @@ module.exports = function(config) {
 
     // list of files / patterns to exclude
     exclude: [
-      'frontend/src/initApp.js',
+      'frontend/src/index.js',
     ],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'frontend/src/**/*.js': ['webpack'],
+      'frontend/test/*.spec.js': ['webpack']
     },
 
+    webpack: {
+      module: {
+        rules: [{
+          test: /\.js/,
+          exclude: /node_modules/,
+          loader: 'babel-loader'
+        }]
+      },
+      watch: true
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'

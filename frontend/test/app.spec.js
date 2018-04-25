@@ -1,13 +1,14 @@
 'use strict';
 
+import GameApp from '../src/app';
+import AppConstants from '../src/utils/appConstants';
+
 describe('Fruit Slot Machine Game Tests - ', function () {
 
-
-  var appModule = window.FruitSlotGame.App;
-  var domAccessModule = window.FruitSlotGame.DomAccess;
-  var dataAccessModule = window.FruitSlotGame.DataAccess;
-  var apiUtilModule = window.FruitSlotGame.Utils.ApiUtility;
-  var constants = window.FruitSlotGame.AppConstants;
+  var appModule;
+  var domAccessModule;
+  var dataAccessModule;
+  var constants = AppConstants;
 
   // API for interacting with the page.
   var controls = {
@@ -24,7 +25,9 @@ describe('Fruit Slot Machine Game Tests - ', function () {
 
   // initialize FruitSlotGame.App and insert html content in to DOM
   beforeEach(function () {
-    appModule.init(domAccessModule, dataAccessModule, apiUtilModule, constants);
+    appModule = new GameApp();
+    domAccessModule = appModule.domAccess;
+    dataAccessModule = appModule.data;
   });
 
   // remove html content from the DOM
@@ -107,7 +110,7 @@ describe('Fruit Slot Machine Game Tests - ', function () {
       expect(controls.result.innerHTML).toBe(constants.noWinText);
     });
 
-    it('should display - Small Win! as result if api returns 2 equal numbers in win array', function () {
+    it('should display - Small Win! as result if api returns 2 identical numbers in win array', function () {
       var data = {
         win: [5, 2, 2],
         activateBonus: false
@@ -116,7 +119,7 @@ describe('Fruit Slot Machine Game Tests - ', function () {
       expect(controls.result.innerHTML).toBe(constants.smallWinText);
     });
 
-    it('should display - Big Win! as result if api returns all equal numbers in win array', function () {
+    it('should display - Big Win! as result if api returns all identical numbers in win array', function () {
       var data = {
         win: [3, 3, 3],
         activateBonus: false
@@ -130,7 +133,7 @@ describe('Fruit Slot Machine Game Tests - ', function () {
         win: [1, 2, 3],
         activateBonus: true
       };
-      spyOn(window.FruitSlotGame.DataAccess, 'getWinData').and.callFake(function (callback) {
+      spyOn(dataAccessModule, 'getWinData').and.callFake(function (callback) {
         callback({
           win: [1, 2, 3],
           activateBonus: false

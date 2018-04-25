@@ -1,10 +1,12 @@
 'use strict';
 
-var FruitSlotGame = FruitSlotGame || {};
-FruitSlotGame.Utils = FruitSlotGame.Utils || {};
-FruitSlotGame.Utils.ApiUtility = FruitSlotGame.Utils.ApiUtility || {};
-FruitSlotGame.Utils.ApiUtility = function () {
-  function httpGet(url, callback) {
+/*
+ * API Utility module for Fruit Slot Machine game
+ * contains http get method implementation
+ */
+
+const ApiUtility = {
+  httpGet: function httpGet(url, callback) {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
       if (xmlHttp.readyState == 4) {
@@ -18,7 +20,6 @@ FruitSlotGame.Utils.ApiUtility = function () {
     xmlHttp.open('GET', url, true);
     xmlHttp.send(null);
   }
-  return {
-    httpGet: httpGet
-  };
-}();
+};
+
+export default ApiUtility;

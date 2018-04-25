@@ -10,6 +10,10 @@
   "plugins": [
     "jasmine"
   ],
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module"
+  },
   "extends": "eslint:recommended",
   "rules": {
     "indent": [

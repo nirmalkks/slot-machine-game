@@ -31,7 +31,7 @@ body {
   display: block;
   margin: 30px auto;
   cursor: pointer;
-  background: url("/images/button.png") no-repeat;
+  background: url("./images/button.png") no-repeat;
   background-size: contain;
 }
 
@@ -69,22 +69,22 @@ body {
     }
   }
   .bg-Symbol_0 {
-    background: url('/images/fruit_reel_small.png') -10px -10px;
+    background: url('./images/fruit_reel_small.png') -10px -10px;
   }
   .bg-Symbol_1 {
-    background: url('/images/fruit_reel_small.png') -10px -100px;
+    background: url('./images/fruit_reel_small.png') -10px -100px;
   }
   .bg-Symbol_2 {
-    background: url('/images/fruit_reel_small.png') -10px -190px;
+    background: url('./images/fruit_reel_small.png') -10px -190px;
   }
   .bg-Symbol_3 {
-    background: url('/images/fruit_reel_small.png') -10px -280px;
+    background: url('./images/fruit_reel_small.png') -10px -280px;
   }
   .bg-Symbol_4 {
-    background: url('/images/fruit_reel_small.png') -10px -370px;
+    background: url('./images/fruit_reel_small.png') -10px -370px;
   }
   .bg-Symbol_5 {
-    background: url('/images/fruit_reel_small.png') -10px -460px;
+    background: url('./images/fruit_reel_small.png') -10px -460px;
   }
   .btn {
     width: 44px;
@@ -126,19 +126,19 @@ body {
     }
   }
   .bg-Symbol_0 {
-    background: url('/images/fruit_reel_medium.png') -10px -10px;
+    background: url('./images/fruit_reel_medium.png') -10px -10px;
   }
   .bg-Symbol_1 {
-    background: url('/images/fruit_reel_medium.png') -10px -139px;
+    background: url('./images/fruit_reel_medium.png') -10px -139px;
   }
   .bg-Symbol_2 {
-    background: url('/images/fruit_reel_medium.png') -10px -268px;
+    background: url('./images/fruit_reel_medium.png') -10px -268px;
   }
   .bg-Symbol_3 {
-    background: url('/images/fruit_reel_medium.png') -10px -397px;
+    background: url('./images/fruit_reel_medium.png') -10px -397px;
   }
   .bg-Symbol_4 {
-    background: url('/images/fruit_reel_medium.png') -10px -526px;
+    background: url('./images/fruit_reel_medium.png') -10px -526px;
   }
   .bg-Symbol_5 {
     background: url('/images/fruit_reel_medium.png') -10px -655px;
@@ -183,22 +183,22 @@ body {
     }
   }
   .bg-Symbol_0 {
-    background: url('/images/fruit_reel.png') -10px -10px;
+    background: url('./images/fruit_reel.png') -10px -10px;
   }
   .bg-Symbol_1 {
-    background: url('/images/fruit_reel.png') -10px -185px;
+    background: url('./images/fruit_reel.png') -10px -185px;
   }
   .bg-Symbol_2 {
-    background: url('/images/fruit_reel.png') -10px -360px;
+    background: url('./images/fruit_reel.png') -10px -360px;
   }
   .bg-Symbol_3 {
-    background: url('/images/fruit_reel.png') -10px -535px;
+    background: url('./images/fruit_reel.png') -10px -535px;
   }
   .bg-Symbol_4 {
-    background: url('/images/fruit_reel.png') -10px -710px;
+    background: url('./images/fruit_reel.png') -10px -710px;
   }
   .bg-Symbol_5 {
-    background: url('/images/fruit_reel.png') -10px -885px;
+    background: url('./images/fruit_reel.png') -10px -885px;
   }
   .btn {
     width: 98px;
